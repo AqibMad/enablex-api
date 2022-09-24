@@ -66,5 +66,21 @@
         echo "</div></div>";
 
     ?>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script>
+        var settings = {
+        "url": "https://api.enablex.io/video/v2/rooms/632f31a682b58afc557e6ddc/users",
+        "method": "GET",
+        "timeout": 0,
+        "headers": {
+        "accept": "application/json",
+        "Authorization": "Basic NjMyZjMxNjgwYjZkMzA0YjI4NjgwMGIzOmFKZVB5dmE2ZXllenVUZTV5RWFQZVhlVXlqZVp1NHVyeWRlNA=="
+        },
+        };
+
+        $.ajax(settings).done(function (response) {
+        console.log(response);
+        });
+    </script>
 </body>
 </html>
