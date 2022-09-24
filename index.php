@@ -68,11 +68,12 @@
     ?>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
-        window.onload = function(){
-        setTimeout(function(){
-        alert("Hello");
-        }, 10000);
+        $(function(){
+        function show_popup(){
+            console.log('Load');
         };
+        window.setTimeout( show_popup, 5000 ); // 5 seconds
+        });
     </script>
 </body>
 </html>
