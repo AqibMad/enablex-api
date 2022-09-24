@@ -9,6 +9,7 @@
     <style>
         .btn {
         padding: 12px 50px;
+        margin-bottom:10px;
         }
         .btn-danger {
         background-color: red !important;
@@ -43,7 +44,7 @@
 
         curl_close($curl);
         $resArr = json_decode($response);
-        echo '<div class="container p-4"><div class="row">';
+        echo '<div class="container p-4 text-center"><div class="row">';
         foreach ($resArr->rooms as $rooms) {
             $curl = curl_init();
 
@@ -80,7 +81,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
     setTimeout(function(){
-    window.location.reload(1);
+    window.location.reload(10);
     }, 20000);
     </script>
 </body>
