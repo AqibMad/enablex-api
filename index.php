@@ -68,12 +68,9 @@
     ?>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
-        $(function(){
-        function show_popup(){
-            console.log('Load');
-        };
-        window.setTimeout( show_popup, 5000 ); // 5 seconds
-        });
+    jQuery(document).ready(function() {
+        setTimeout(function() {}, 3000);
+    });
     </script>
 </body>
 </html>
