@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get EnableX Api</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <style>
+        .btn {
+        padding: 12px 50px;
+        }
+        .btn-danger {
+        background-color: red !important;
+        }
+        .btn-success {
+        background-color: green !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,9 +79,9 @@
     ?>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
-    jQuery(document).ready(function() {
-        setTimeout(function() {}, 3000);
-    });
+    setTimeout(function(){
+    window.location.reload(1);
+    }, 20000);
     </script>
 </body>
 </html>
