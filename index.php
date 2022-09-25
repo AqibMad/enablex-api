@@ -120,7 +120,7 @@
 	});
     setTimeout(function(){
     window.location.reload(10);
-    }, 9000);
+    }, 3000);
     </script>
 </body>
 </html>
