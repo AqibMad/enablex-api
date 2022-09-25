@@ -10,11 +10,12 @@
         .btn {
         padding: 12px 50px;
         margin-bottom:10px;
+        color: #fff;
         }
-        .btn-danger {
+        .red {
         background-color: red !important;
         }
-        .btn-success {
+        .green {
         background-color: green !important;
         }
     </style>
@@ -36,7 +37,7 @@
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
             'accept: application/json',
-            'Authorization: Basic NjMyZjMxNjgwYjZkMzA0YjI4NjgwMGIzOmFKZVB5dmE2ZXllenVUZTV5RWFQZVhlVXlqZVp1NHVyeWRlNA=='
+            'Authorization: Basic NjJmZmQ0MzJhMmU0M2M1ZjQxNDAzNDA2OmFkeW11eXlMYXVlOXVUZU1hSHlWdTlhcHVndVVhenUzdUd1Vw=='
         ),
         ));
 
@@ -45,6 +46,22 @@
         curl_close($curl);
         $resArr = json_decode($response);
         echo '<div class="container p-4 text-center"><div class="row">';
+        $names = array('Room 1','Room 2','Room 3','Room 4','Room 5','Room 6','Room 7','Room 8','Room 9','Room 10','Entertainment Room');
+        $url = array(
+            'https://www.crowdcover.app/1-moderator-room',
+            'https://www.crowdcover.app/2-moderator-room',
+            'https://www.crowdcover.app/rooms-list#',
+            'https://www.crowdcover.app/4-moderator-room',
+            'https://www.crowdcover.app/5-moderator-room',
+            'https://www.crowdcover.app/6-moderator-room',
+            'https://www.crowdcover.app/7-moderator-room',
+            'https://www.crowdcover.app/8-moderator-room',
+            'https://www.crowdcover.app/9-moderator-room',
+            'https://www.crowdcover.app/bovada-nfl-moderator-room',
+            'https://www.crowdcover.app/entertainment-room-leader'
+        );
+        $count = 0;
+        $url_count = 0;
         foreach ($resArr->rooms as $rooms) {
             $curl = curl_init();
 
@@ -59,7 +76,7 @@
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
                 'accept: application/json',
-                'Authorization: Basic NjMyZjMxNjgwYjZkMzA0YjI4NjgwMGIzOmFKZVB5dmE2ZXllenVUZTV5RWFQZVhlVXlqZVp1NHVyeWRlNA=='
+                'Authorization: Basic NjJmZmQ0MzJhMmU0M2M1ZjQxNDAzNDA2OmFkeW11eXlMYXVlOXVUZU1hSHlWdTlhcHVndVVhenUzdUd1Vw=='
             ),
             ));
 
@@ -68,9 +85,17 @@
             curl_close($curl);
             $user_resArr = json_decode($user_response);
             if ($user_resArr->total > 0) { ?>
-            <div class="col-md-2"><div class="d-grid gap-2"><button type="button" data-count="<?php echo $user_resArr->total;?>" class="btn btn-success">Room</button></div></div>
+            <div class="col-md-2"><div class="d-grid gap-2">
+                <button type="button" data-count="<?php echo $user_resArr->total;?>" data-url="<?php echo $url[$url_count++];?>" class="btn red room-btn disabled">
+                    <?php echo $names[$count++];?>
+                </button>
+            </div></div>
             <?php } else { ?>
-            <div class="col-md-2"><div class="d-grid gap-2"><button type="button" data-count="<?php echo $user_resArr->total;?>" class="btn btn-danger disabled">Room</button></div></div>
+            <div class="col-md-2"><div class="d-grid gap-2">
+                <button type="button" data-count="<?php echo $user_resArr->total;?>" data-url="<?php echo $url[$url_count++];?>" class="btn green room-btn">
+                    <?php echo $names[$count++];?>
+                </button>
+            </div></div>
             <?php }
             
 
@@ -80,9 +105,22 @@
     ?>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
+        
+	jQuery( ".room-btn" ).click(function() {
+	  let url = jQuery( this ).data("url");
+      let count = jQuery( this ).data("count");
+      if (count > 0) {
+        jQuery( this ).addClass( "red" );
+        jQuery( this ).removeClass( "green" );
+      }else{
+        setTimeout(function() {
+		window.open(url, '_self');
+		}, 1000);
+      }
+	});
     setTimeout(function(){
     window.location.reload(10);
-    }, 20000);
+    }, 9000);
     </script>
 </body>
 </html>
