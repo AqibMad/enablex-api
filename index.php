@@ -86,13 +86,13 @@
             $user_resArr = json_decode($user_response);
             if ($user_resArr->total > 0) { ?>
             <div class="col-md-2"><div class="d-grid gap-2">
-                <button type="button" data-count="<?php echo $user_resArr->total;?>" data-url="<?php echo $url[$url_count++];?>" class="btn red room-btn disabled">
+                <button type="button" data-count="<?php echo $user_resArr->total;?>" class="btn red room-btn disabled" onclick='window.open("<?php echo $url[$url_count++];?>", "_blank");'>
                     <?php echo $names[$count++];?>
                 </button>
             </div></div>
             <?php } else { ?>
             <div class="col-md-2"><div class="d-grid gap-2">
-                <button type="button" data-count="<?php echo $user_resArr->total;?>" data-url="<?php echo $url[$url_count++];?>" class="btn green room-btn">
+                <button type="button" data-count="<?php echo $user_resArr->total;?>" class="btn green room-btn" onclick='window.open("<?php echo $url[$url_count++];?>", "_blank");'>
                     <?php echo $names[$count++];?>
                 </button>
             </div></div>
@@ -107,14 +107,21 @@
     <script>
         
 	jQuery( ".room-btn" ).click(function() {
-	  let url = jQuery( this ).data("url");
+	//   let url = jQuery( this ).data("url");
       let count = jQuery( this ).data("count");
+      var windowReference = window.open();
       if (count > 0) {
         jQuery( this ).addClass( "red" );
         jQuery( this ).removeClass( "green" );
       }else{
         setTimeout(function() {
-		window.open(url, '_self');
+        myService.getUrl().then(function(url) {
+            windowReference.location = url;
+        }); 
+		// if (url) {
+        //     window.open(url, '_blank');   
+        // }
+        //window.cordova.InAppBrowser.open(url, '_blank');
 		}, 1000);
       }
 	});
