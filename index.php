@@ -114,7 +114,7 @@
         jQuery( this ).removeClass( "green" );
       }else{
         setTimeout(function() {
-		window.open(url, '_blank');
+		window.open(url, '_self');
 		}, 1000);
       }
 	});
